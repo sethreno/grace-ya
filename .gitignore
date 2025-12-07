@@ -13,7 +13,10 @@ env/
 
 # MkDocs build output
 site/
-docs/
+
+# Generated source assets (QR code)
+# Note: docs/ is NOT ignored because GitHub Pages serves from it
+source/assets/
 
 # uv
 .uv/
