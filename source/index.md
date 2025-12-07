@@ -7,12 +7,13 @@ Online Study Guides
 - 📄 [With God](https://app.rightnowmedia.org/en/study-guide/2529/853508){:target="_blank"}
 - 📄 [With Friends](https://app.rightnowmedia.org/en/study-guide/2529/853520){:target="_blank"}
 - 📄 [With Singleness](https://app.rightnowmedia.org/en/study-guide/2529/853522){:target="_blank"}
-- 📄 [With Your Spouse](https://app.rightnowmedia.org/en/study-guide/2529/853508){:target="_blank"}
+- 📄 [With Your Spouse](https://app.rightnowmedia.org/en/study-guide/2529/853524){:target="_blank"}
     - Hebrews 2:1
     - Colossians 1:9-12
     - 1 John 4:16
     - Philippians 2:3-4
     - Genesis 2:18-24
+
 
 ## Contact
 
