@@ -11,4 +11,4 @@ uv run mkdocs build
 # Uncomment the line below if you want to keep index.html in the root
 # cp site/index.html ./index.html
 
-echo "Site built successfully! Output is in the 'site' directory."
+echo "Site built successfully! Output is in the 'docs' directory."
