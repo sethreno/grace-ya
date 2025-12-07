@@ -13,6 +13,7 @@ Online Study Guides
     - 1 John 4:16
     - Philippians 2:3-4
     - Genesis 2:18-24
+    - Luke 6:45
 
 
 ## Contact
