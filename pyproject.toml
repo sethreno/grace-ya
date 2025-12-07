@@ -1,0 +1,12 @@
+[project]
+name = "grace-ya"
+version = "0.1.0"
+description = "Grace Young Adults website"
+requires-python = ">=3.8"
+dependencies = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.4.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = []
