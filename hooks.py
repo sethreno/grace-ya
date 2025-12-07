@@ -1,7 +1,9 @@
-"""MkDocs hooks to automatically generate Bible verse links."""
+"""MkDocs hooks to automatically generate Bible verse links and QR codes."""
 
 import re
 import urllib.parse
+import os
+import qrcode
 
 
 def on_page_markdown(markdown, **kwargs):
@@ -49,3 +51,32 @@ def on_page_markdown(markdown, **kwargs):
             processed_lines.append(line)
 
     return '\n'.join(processed_lines)
+
+
+def on_pre_build(config, **kwargs):
+    """Generate QR code for the site homepage before building."""
+    site_url = "https://sethreno.github.io/grace-ya/"
+
+    # Create assets directory if it doesn't exist
+    source_dir = config['docs_dir']
+    assets_dir = os.path.join(source_dir, 'assets')
+    os.makedirs(assets_dir, exist_ok=True)
+
+    # Generate QR code
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(site_url)
+    qr.make(fit=True)
+
+    # Create image
+    img = qr.make_image(fill_color="black", back_color="white")
+
+    # Save QR code
+    qr_path = os.path.join(assets_dir, 'qr-code.png')
+    img.save(qr_path)
+
+    print(f"Generated QR code: {qr_path}")

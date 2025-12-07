@@ -22,3 +22,7 @@ Seth & Krystal Reno
 - 📱 Krystal - [816-632-2830](tel:816-632-2830)
 - ✉️ [sethreno@gmail.com](mailto:sethreno@gmail.com)
 - ✉️ [krvancamp@gmail.com](mailto:krvancamp@gmail.com)
+
+## Share
+
+![QR Code](assets/qr-code.png){ width="200" }
