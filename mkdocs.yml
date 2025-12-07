@@ -2,6 +2,10 @@ site_name: Grace Young Adults
 site_url: https://example.com
 docs_dir: source
 site_dir: docs
+
+hooks:
+  - hooks.py
+
 theme:
   name: material
   palette:
