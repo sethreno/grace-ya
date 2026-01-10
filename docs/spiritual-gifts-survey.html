@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiritual Gifts Survey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .progress-container {
+            background: #f0f0f0;
+            padding: 20px 40px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+            border-radius: 15px;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+            color: #333;
+            font-size: 0.9em;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+
+        .instructions h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .scale-guide {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px solid #ffc107;
+        }
+
+        .scale-guide h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .scale-guide ul {
+            list-style: none;
+            color: #856404;
+        }
+
+        .scale-guide li {
+            padding: 5px 0;
+            font-weight: 500;
+        }
+
+        .question-card {
+            background: #f8f9fa;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .question-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .question-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .rating-options {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .rating-option {
+            flex: 1;
+            min-width: 60px;
+        }
+
+        .rating-option input[type="radio"] {
+            display: none;
+        }
+
+        .rating-option label {
+            display: block;
+            text-align: center;
+            padding: 15px 10px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .rating-option label:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .rating-option input[type="radio"]:checked + label {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .rating-number {
+            font-size: 1.4em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .rating-label {
+            font-size: 0.75em;
+            display: block;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            display: block;
+            margin: 40px auto 0;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .results-container {
+            display: none;
+        }
+
+        .results-container.active {
+            display: block;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .results-header h2 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .results-header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .chart-container {
+            margin: 40px 0;
+        }
+
+        .chart-row {
+            margin-bottom: 25px;
+        }
+
+        .chart-label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chart-label-name {
+            font-size: 1.1em;
+        }
+
+        .chart-label-score {
+            font-size: 1.2em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .chart-bar-bg {
+            background: #e0e0e0;
+            height: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .top-gifts {
+            background: #d4edda;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 40px;
+            border: 2px solid #28a745;
+        }
+
+        .top-gifts h3 {
+            color: #155724;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .top-gifts ol {
+            margin-left: 20px;
+        }
+
+        .top-gifts li {
+            color: #155724;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .reset-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .save-options {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .save-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1em;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .save-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .save-btn.secondary {
+            background: #17a2b8;
+        }
+
+        .save-btn.secondary:hover {
+            background: #138496;
+        }
+
+        .save-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .save-options,
+            .reset-btn,
+            .progress-container {
+                display: none !important;
+            }
+
+            .chart-bar {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        .reflection-section {
+            background: #fff3cd;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 2px solid #ffc107;
+        }
+
+        .reflection-section h3 {
+            color: #856404;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .reflection-section p {
+            color: #856404;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .rating-options {
+                flex-direction: column;
+            }
+
+            .rating-option {
+                width: 100%;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Spiritual Gifts Survey</h1>
+            <p>Discover your God-given gifts for serving others</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+                <div class="progress-text" id="progressText">0 of 80 questions answered</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div id="surveyContainer">
+                <div class="instructions">
+                    <h2>Directions</h2>
+                    <ul>
+                        <li>This is not a test, so there are no wrong answers</li>
+                        <li>Select the response that best characterizes yourself</li>
+                        <li>Your answers are automatically saved as you work</li>
+                        <li>Do not spend too much time on any one item - your immediate response is best</li>
+                        <li>Please give an answer for each item. Do not skip any items</li>
+                    </ul>
+                </div>
+
+                <div class="scale-guide">
+                    <h3>Response Scale:</h3>
+                    <ul>
+                        <li><strong>5</strong> - Highly characteristic of me/definitely true for me</li>
+                        <li><strong>4</strong> - Most of the time this would describe me/be true for me</li>
+                        <li><strong>3</strong> - Frequently characteristic of me/true for me (about 50% of the time)</li>
+                        <li><strong>2</strong> - Occasionally characteristic of me/true for me (about 25% of the time)</li>
+                        <li><strong>1</strong> - Not at all characteristic of me/definitely untrue for me</li>
+                    </ul>
+                </div>
+
+                <div id="questionsContainer"></div>
+
+                <button class="submit-btn" id="submitBtn" disabled>Complete Survey & View Results</button>
+            </div>
+
+            <div id="resultsContainer" class="results-container">
+                <div class="results-header">
+                    <h2>Your Spiritual Gifts Profile</h2>
+                    <p>Here are your results based on your responses</p>
+                </div>
+
+                <div class="chart-container" id="chartContainer"></div>
+
+                <div class="top-gifts" id="topGifts"></div>
+
+                <div class="reflection-section">
+                    <h3>Reflection Questions</h3>
+                    <p><strong>The gifts I have begun to discover in my life are:</strong> (See your top 3 gifts above)</p>
+                    <p><strong>After prayer and worship,</strong> I am beginning to sense that God wants me to use my spiritual gifts to serve Christ's body by _____________________.</p>
+                    <p>Ask God to help you know how He has gifted you for service and how you can begin to use this gift in ministry to others.</p>
+                </div>
+
+                <div class="save-options">
+                    <button class="save-btn" id="printBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+                        Print / Save as PDF
+                    </button>
+                    <button class="save-btn secondary" id="emailBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        Send via Email
+                    </button>
+                    <button class="save-btn secondary" id="downloadJsonBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"/></svg>
+                        Download Data
+                    </button>
+                    <button class="save-btn secondary" id="copyBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                        Copy Results
+                    </button>
+                </div>
+
+                <button class="reset-btn" id="resetBtn">Take Survey Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Survey questions
+        const questions = [
+            "I have the ability to organize ideas, resources, time, and people effectively.",
+            "I am willing to study and prepare for the task of teaching.",
+            "I am able to relate the truths of God to specific situations.",
+            "I have a God-given ability to help others grow in their faith.",
+            "I possess a special ability to communicate the truth of salvation.",
+            "I have the ability to make critical decisions when necessary.",
+            "I am sensitive to the hurts of people.",
+            "I experience joy in meeting needs through sharing possessions.",
+            "I enjoy studying.",
+            "I have delivered God's message of warning and judgment.",
+            "I am able to sense the true motivation of persons and movements.",
+            "I have a special ability to trust God in difficult situations.",
+            "I have a strong desire to contribute to the establishment of new churches.",
+            "I take action to meet physical and practical needs rather than merely talking about or planning how to help.",
+            "I enjoy entertaining guests in my home.",
+            "I can adapt my guidance to fit the maturity of those working with me.",
+            "I can delegate and assign meaningful work.",
+            "I have an ability and desire to teach.",
+            "I am usually able to analyze a situation correctly.",
+            "I have a natural tendency to encourage others.",
+            "I am willing to take the initiative in helping other Christians grow in their faith.",
+            "I have an acute awareness of other people's emotions, such as loneliness, pain, fear, and anger.",
+            "I am a cheerful giver.",
+            "I spend time digging into facts.",
+            "I feel that I have a message from God to deliver to others.",
+            "I can recognize when a person is genuine/honest.",
+            "I am a person of vision (a clear mental portrait of a preferable future given by God). I am able to communicate vision in such a way that others commit to making the vision a reality.",
+            "I am willing to yield to God's will rather than question and waver.",
+            "I would like to be more active in getting the gospel to people in other countries.",
+            "It makes me happy to do things for people in need.",
+            "I am successful in getting a group to do its work joyfully.",
+            "I am able to make strangers feel at ease.",
+            "I have the ability to teach to a variety of different learning styles.",
+            "I can identify those who need encouragement.",
+            "I have trained Christians to be more obedient disciples of Christ.",
+            "I am willing to do whatever it takes to see others come to Christ.",
+            "I am drawn to people who are hurting.",
+            "I am a generous giver.",
+            "I am able to discover new truths in Scripture.",
+            "I have spiritual insights from Scripture concerning issues and people that compel me to speak out.",
+            "I can sense when a person is acting in accordance with God's will.",
+            "I can trust in God even when things look dark.",
+            "I can determine where God wants a group to go and help it get there.",
+            "I have a strong desire to take the gospel to places where it has never been heard.",
+            "I enjoy reaching out to new people in my church and community.",
+            "I am sensitive to the needs of people.",
+            "I have been able to make effective and efficient plans for accomplishing the goals of a group.",
+            "I often am consulted when fellow Christians are struggling to make difficult decisions.",
+            "I think about how I can comfort and encourage others in my congregation.",
+            "I am able to give spiritual direction to others.",
+            "I am able to present the gospel to lost persons in such a way that they accept the Lord and His salvation.",
+            "I possess an unusual capacity to understand the feelings of those in distress.",
+            "I have a strong sense of stewardship based on the recognition that God owns all things.",
+            "I have delivered to other persons messages that have come directly from God.",
+            "I can sense when a person is acting under God's leadership.",
+            "I try to be in God's will continually and be available for His use.",
+            "I feel that I should take the gospel to people who have different beliefs from me.",
+            "I have an acute awareness of the physical needs of others.",
+            "I am skilled in setting forth positive and precise steps of action.",
+            "I like to meet visitors at church and make them feel welcome.",
+            "I explain Scripture in such a way that others understand it.",
+            "I can usually see spiritual solutions to problems.",
+            "I welcome opportunities to help people who need comfort, consolation, encouragement, and counseling.",
+            "I feel at ease in sharing Christ with nonbelievers.",
+            "I can influence others to perform to their highest God-given potential.",
+            "I recognize the signs of stress and distress in others.",
+            "I desire to give generously and unpretentiously to worthwhile projects and ministries.",
+            "I can organize facts into meaningful relationships.",
+            "God gives me messages to deliver to His people.",
+            "I am able to sense whether people are being honest when they tell of their religious experiences.",
+            "I enjoy presenting the gospel to persons of other cultures and backgrounds.",
+            "I enjoy doing little things that help people.",
+            "I can give a clear, uncomplicated presentation of the gospel.",
+            "I have been able to apply biblical truth to the specific needs of my church.",
+            "God has used me to encourage others to live Christlike lives.",
+            "I have sensed the need to help other people become more effective in their ministries.",
+            "I like to talk about Jesus to those who do not know Him.",
+            "I have the ability to make strangers feel comfortable in my home.",
+            "I have a wide range of study resources and know how to secure information.",
+            "I feel assured that a situation will change for the glory of God even when the situation seem impossible."
+        ];
+
+        // Gift scoring mapping - each gift has 5 question numbers (0-indexed)
+        const giftMapping = {
+            "Leadership": [5, 15, 26, 42, 64],
+            "Administration": [0, 16, 30, 46, 58],
+            "Teaching": [1, 17, 32, 60, 72],
+            "Knowledge": [8, 23, 38, 67, 78],
+            "Wisdom": [2, 18, 47, 61, 73],
+            "Prophecy": [9, 24, 39, 53, 68],
+            "Discernment": [10, 25, 40, 54, 69],
+            "Exhortation": [19, 33, 48, 62, 74],
+            "Shepherding": [3, 20, 34, 49, 75],
+            "Faith": [11, 27, 41, 55, 79],
+            "Evangelism": [4, 35, 50, 63, 76],
+            "Apostleship": [12, 28, 43, 57, 70],
+            "Service/Helps": [13, 29, 45, 57, 71],
+            "Mercy": [6, 21, 36, 51, 65],
+            "Giving": [7, 22, 37, 52, 66],
+            "Hospitality": [14, 31, 44, 59, 77]
+        };
+
+        // Initialize
+        let answers = {};
+        const STORAGE_KEY = 'spiritualGiftsSurvey';
+
+        // Load saved answers from localStorage
+        function loadAnswers() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                answers = JSON.parse(saved);
+            }
+        }
+
+        // Save answers to localStorage
+        function saveAnswers() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const answered = Object.keys(answers).length;
+            const percentage = (answered / questions.length) * 100;
+            document.getElementById('progressFill').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = `${answered} of ${questions.length} questions answered`;
+
+            // Enable submit button when all questions are answered
+            document.getElementById('submitBtn').disabled = answered < questions.length;
+        }
+
+        // Render questions
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-card';
+                questionDiv.innerHTML = `
+                    <div class="question-number">Question ${index + 1}</div>
+                    <div class="question-text">${question}</div>
+                    <div class="rating-options">
+                        ${[1, 2, 3, 4, 5].map(value => `
+                            <div class="rating-option">
+                                <input type="radio" id="q${index}_${value}" name="q${index}" value="${value}" ${answers[index] == value ? 'checked' : ''}>
+                                <label for="q${index}_${value}">
+                                    <span class="rating-number">${value}</span>
+                                    <span class="rating-label">${value === 5 ? 'Highly' : value === 4 ? 'Most' : value === 3 ? 'Frequently' : value === 2 ? 'Occasionally' : 'Not at all'}</span>
+                                </label>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+
+                // Add event listeners
+                [1, 2, 3, 4, 5].forEach(value => {
+                    document.getElementById(`q${index}_${value}`).addEventListener('change', function() {
+                        answers[index] = parseInt(value);
+                        saveAnswers();
+                        updateProgress();
+                    });
+                });
+            });
+        }
+
+        // Calculate scores
+        function calculateScores() {
+            const scores = {};
+
+            for (const [gift, questionIndices] of Object.entries(giftMapping)) {
+                let total = 0;
+                questionIndices.forEach(index => {
+                    total += answers[index] || 0;
+                });
+                scores[gift] = total;
+            }
+
+            return scores;
+        }
+
+        // Display results
+        function displayResults() {
+            const scores = calculateScores();
+
+            // Sort by score
+            const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+
+            // Create chart
+            const chartContainer = document.getElementById('chartContainer');
+            chartContainer.innerHTML = '';
+
+            sortedScores.forEach(([gift, score]) => {
+                const percentage = (score / 25) * 100; // Max score is 25 (5 questions × 5 points)
+
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'chart-row';
+                rowDiv.innerHTML = `
+                    <div class="chart-label">
+                        <span class="chart-label-name">${gift}</span>
+                        <span class="chart-label-score">${score}/25</span>
+                    </div>
+                    <div class="chart-bar-bg">
+                        <div class="chart-bar" style="width: ${percentage}%"></div>
+                    </div>
+                `;
+                chartContainer.appendChild(rowDiv);
+            });
+
+            // Show top 3 gifts
+            const topGiftsDiv = document.getElementById('topGifts');
+            topGiftsDiv.innerHTML = `
+                <h3>Your Top 3 Spiritual Gifts</h3>
+                <ol>
+                    <li>${sortedScores[0][0]} (Score: ${sortedScores[0][1]}/25)</li>
+                    <li>${sortedScores[1][0]} (Score: ${sortedScores[1][1]}/25)</li>
+                    <li>${sortedScores[2][0]} (Score: ${sortedScores[2][1]}/25)</li>
+                </ol>
+                <p style="margin-top: 20px; color: #155724; font-size: 1em;">These are the gifts where you scored highest. Consider how God might be calling you to use these gifts in service to others.</p>
+            `;
+
+            // Show results, hide survey
+            document.getElementById('surveyContainer').classList.add('hidden');
+            document.getElementById('resultsContainer').classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Print results
+        function printResults() {
+            window.print();
+        }
+
+        // Download results as JSON
+        function downloadJson() {
+            const scores = calculateScores();
+            const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+
+            const data = {
+                date: new Date().toISOString(),
+                scores: scores,
+                topGifts: [
+                    { name: sortedScores[0][0], score: sortedScores[0][1] },
+                    { name: sortedScores[1][0], score: sortedScores[1][1] },
+                    { name: sortedScores[2][0], score: sortedScores[2][1] }
+                ],
+                allAnswers: answers
+            };
+
+            const jsonString = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `spiritual-gifts-results-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Copy results to clipboard
+        function copyResults() {
+            const scores = calculateScores();
+            const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+
+            let text = 'SPIRITUAL GIFTS SURVEY RESULTS\n';
+            text += '================================\n\n';
+            text += `Date: ${new Date().toLocaleDateString()}\n\n`;
+            text += 'TOP 3 SPIRITUAL GIFTS:\n';
+            text += `1. ${sortedScores[0][0]}: ${sortedScores[0][1]}/25\n`;
+            text += `2. ${sortedScores[1][0]}: ${sortedScores[1][1]}/25\n`;
+            text += `3. ${sortedScores[2][0]}: ${sortedScores[2][1]}/25\n\n`;
+            text += 'ALL SCORES:\n';
+            text += '--------------------------------\n';
+
+            sortedScores.forEach(([gift, score]) => {
+                const percentage = Math.round((score / 25) * 100);
+                text += `${gift.padEnd(20)} ${score}/25 (${percentage}%)\n`;
+            });
+
+            text += '\n© 2003 Lifeway Christian Resources, revised 2022\n';
+
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Copied!';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                }, 2000);
+            }).catch(err => {
+                alert('Failed to copy to clipboard. Please try again.');
+            });
+        }
+
+        // Send results via email
+        function sendEmail() {
+            const scores = calculateScores();
+            const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+
+            const subject = 'My Spiritual Gifts Survey Results';
+
+            let body = 'SPIRITUAL GIFTS SURVEY RESULTS\n';
+            body += '================================\n\n';
+            body += `Date: ${new Date().toLocaleDateString()}\n\n`;
+            body += 'TOP 3 SPIRITUAL GIFTS:\n';
+            body += `1. ${sortedScores[0][0]}: ${sortedScores[0][1]}/25\n`;
+            body += `2. ${sortedScores[1][0]}: ${sortedScores[1][1]}/25\n`;
+            body += `3. ${sortedScores[2][0]}: ${sortedScores[2][1]}/25\n\n`;
+            body += 'ALL SCORES:\n';
+            body += '--------------------------------\n';
+
+            sortedScores.forEach(([gift, score]) => {
+                const percentage = Math.round((score / 25) * 100);
+                body += `${gift.padEnd(20)} ${score}/25 (${percentage}%)\n`;
+            });
+
+            body += '\n© 2003 Lifeway Christian Resources, revised 2022\n';
+
+            // Encode the subject and body for the mailto link
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            // Open the mailto link
+            window.location.href = mailtoLink;
+        }
+
+        // Reset survey
+        function resetSurvey() {
+            if (confirm('Are you sure you want to reset the survey? All your answers will be cleared.')) {
+                answers = {};
+                localStorage.removeItem(STORAGE_KEY);
+                document.getElementById('surveyContainer').classList.remove('hidden');
+                document.getElementById('resultsContainer').classList.remove('active');
+                renderQuestions();
+                updateProgress();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Event listeners
+        document.getElementById('submitBtn').addEventListener('click', displayResults);
+        document.getElementById('resetBtn').addEventListener('click', resetSurvey);
+        document.getElementById('printBtn').addEventListener('click', printResults);
+        document.getElementById('emailBtn').addEventListener('click', sendEmail);
+        document.getElementById('downloadJsonBtn').addEventListener('click', downloadJson);
+        document.getElementById('copyBtn').addEventListener('click', copyResults);
+
+        // Initialize app
+        loadAnswers();
+        renderQuestions();
+        updateProgress();
+    </script>
+</body>
+</html>

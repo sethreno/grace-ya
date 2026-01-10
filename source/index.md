@@ -34,7 +34,7 @@ Online Study Guides
     - Hebrews 10:19–25
     - Ephesians 4:11-16
     - Colossians 3:16
-    - [Spiritual Gifts Assessment](https://gifts.churchgrowth.org/spiritual-gifts-survey/)
+    - [Spiritual Gifts Assessment](spiritual-gifts-survey.html){:target="_blank"}
 
 
 ## Contact
