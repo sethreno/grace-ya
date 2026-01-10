@@ -27,7 +27,7 @@ Online Study Guides
             - Galatians 5:22-23
             - Ephesians 5:21-33
 - 📄 [With Your Church](https://app.rightnowmedia.org/en/study-guide/2529/853526){:target="_blank"}
-    - Acts 5:17-39
+    - Acts 5:29-39
     - Romans 3:23
     - John 14:26
     - 1 Corinthians 12:4-11
