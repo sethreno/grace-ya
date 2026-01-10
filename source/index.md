@@ -26,6 +26,15 @@ Online Study Guides
             - 1 Corinthians 7:39 
             - Galatians 5:22-23
             - Ephesians 5:21-33
+- 📄 [With Your Church](https://app.rightnowmedia.org/en/study-guide/2529/853526){:target="_blank"}
+    - Acts 5:17-39
+    - Romans 3:23
+    - John 14:26
+    - 1 Corinthians 12:4-11
+    - Hebrews 10:19–25
+    - Ephesians 4:11-16
+    - Colossians 3:16
+    - [Spiritual Gifts Assessment](https://gifts.churchgrowth.org/spiritual-gifts-survey/)
 
 
 ## Contact
