@@ -45,3 +45,13 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Relieving Anxiety:
+    - relieving-anxiety/index.md
+  - Together:
+    - together/index.md
+    - With God: together/with-god.md
+    - With Friends: together/with-friends.md
+    - With Singleness: together/with-singleness.md
+    - With Your Spouse: together/with-your-spouse.md
+    - With Your Church: together/with-your-church.md
+    - With Your Community: together/with-your-community.md
