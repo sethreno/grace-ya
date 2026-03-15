@@ -8,6 +8,5 @@
 ## Sources of Anxiety
 We've discussed a few sources of anxiety and identified verses where the Bible addresses them.
 
-- [End of the World](end-of-the-world.md)
 - [Government](government.md)
 - [Planning for the Future](planning-for-the-future.md)
