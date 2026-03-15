@@ -55,3 +55,4 @@ htmlcov/
 # Misc
 *.log
 .cache/
+.verse_cache/

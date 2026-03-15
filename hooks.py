@@ -5,11 +5,13 @@ import urllib.parse
 import os
 import qrcode
 import requests
+import diskcache
 from bs4 import BeautifulSoup
-from functools import lru_cache
+
+_cache = diskcache.Cache('.verse_cache')
 
 
-@lru_cache(maxsize=128)
+@_cache.memoize()
 def fetch_verse_text(verse_reference):
     """Fetch verse text from BibleGateway.
 
