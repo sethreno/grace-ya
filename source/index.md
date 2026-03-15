@@ -4,7 +4,8 @@ Welcome! We’re a young adults group studying the Bible together.
 
 ## Topics
 
-- [Relieving Anxiety](relieving-anxiety/index.md) — current
+- [Anger](anger/index.md) — current
+- [Relieving Anxiety](relieving-anxiety/index.md)
 - [Together](together/index.md) — A series on relationships 
 
 
