@@ -4,8 +4,9 @@ Welcome! We’re a young adults group studying the Bible together.
 
 ## Topics
 
-- [Anger](anger/index.md) — current
-- [Relieving Anxiety](relieving-anxiety/index.md)
+- [The Olive Tree](the-olive-tree/index.md) — current
+- [Anger](anger/index.md)
+- [Anxiety](relieving-anxiety/index.md)
 - [Together](together/index.md) — A series on relationships 
 
 

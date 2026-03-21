@@ -45,6 +45,8 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - The Olive Tree:
+    - the-olive-tree/index.md
   - Anger:
     - anger/index.md
   - Anxiety:
