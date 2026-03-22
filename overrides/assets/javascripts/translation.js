@@ -10,10 +10,25 @@ function getCurrentTranslation() {
   return localStorage.getItem('bible-translation') || 'NIV';
 }
 
+function setVerseText(el, text) {
+  const paragraphs = text.split('\n\n');
+  if (paragraphs.length <= 1) {
+    el.textContent = text;
+    return;
+  }
+  // Safely escape each paragraph then join with <br><br>
+  const parts = paragraphs.map(p => {
+    const tmp = document.createElement('span');
+    tmp.textContent = p;
+    return tmp.innerHTML;
+  });
+  el.innerHTML = parts.join('<br><br>');
+}
+
 function updateVerseTexts(version) {
   document.querySelectorAll('.verse-text').forEach(el => {
     const text = el.dataset[version.toLowerCase()];
-    if (text) el.textContent = text;
+    if (text) setVerseText(el, text);
   });
 }
 

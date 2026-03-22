@@ -62,24 +62,28 @@ def fetch_verse_text(verse_reference, version='NIV'):
         for heading in passage_div.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
             heading.decompose()
 
-        # Get all text with proper spacing between elements
-        result = passage_div.get_text(separator=' ', strip=True)
+        def clean_text(text):
+            text = re.sub(r'\([A-Z]\)', '', text)          # cross-reference markers (A), (B)
+            text = re.sub(r'\[[a-z]\]', '', text)          # footnote markers [a], [b]
+            text = re.sub(r'^\d+\s+', '', text)            # leading verse numbers
+            text = re.sub(r'the\s*Lord', 'the Lord', text, flags=re.IGNORECASE)
+            text = re.sub(r'TheLord', 'The Lord', text)
+            text = re.sub(r'\s+([,.:;!?])', r'\1', text)  # spacing before punctuation
+            return re.sub(r'\s+', ' ', text).strip()
 
-        # Clean up the result
-        # Remove cross-reference markers like (A), (B), etc.
-        result = re.sub(r'\([A-Z]\)', '', result)
-        # Remove verse numbers at the beginning (e.g., "2 We must...")
-        result = re.sub(r'^\d+\s+', '', result)
-        # Fix spacing issues with "LORD"
-        result = re.sub(r'the\s*Lord', 'the Lord', result, flags=re.IGNORECASE)
-        # Fix "TheLord" -> "The Lord"
-        result = re.sub(r'TheLord', 'The Lord', result)
-        # Fix spacing before punctuation
-        result = re.sub(r'\s+([,.:;!?])', r'\1', result)
-        # Clean up multiple spaces
-        result = re.sub(r'\s+', ' ', result).strip()
+        # Extract paragraphs individually to preserve paragraph breaks
+        paragraphs = [
+            clean_text(p.get_text(separator=' ', strip=True))
+            for p in passage_div.find_all('p')
+        ]
+        paragraphs = [p for p in paragraphs if p]
 
-        print(f"Fetched verse text for {verse_reference}: {result[:50]}...")
+        if paragraphs:
+            result = '\n\n'.join(paragraphs)
+        else:
+            result = clean_text(passage_div.get_text(separator=' ', strip=True))
+
+        print(f"Fetched verse text for {verse_reference} ({version}): {result[:50]}...")
         return result
 
     except Exception as e:
@@ -136,12 +140,14 @@ def on_page_markdown(markdown, **kwargs):
 
             # Build the markdown line with verse text if available
             if translations:
+                # Encode newlines as &#10; so they survive HTML attribute parsing
                 data_attrs = ' '.join(
-                    f'data-{v.lower()}="{html.escape(t, quote=True)}"'
+                    f'data-{v.lower()}="{html.escape(t, quote=True).replace(chr(10), "&#10;")}"'
                     for v, t in translations.items()
                 )
                 default_text = translations.get('NIV', next(iter(translations.values())))
-                verse_span = f'<span class="verse-text" {data_attrs}>{html.escape(default_text)}</span>'
+                initial_html = html.escape(default_text).replace('\n\n', '<br><br>')
+                verse_span = f'<span class="verse-text" {data_attrs}>{initial_html}</span>'
                 processed_lines.append(f"{indent}- [{verse_ref}]({url}){{:target=\"_blank\"}} - {verse_span}")
             else:
                 processed_lines.append(f"{indent}- [{verse_ref}]({url}){{:target=\"_blank\"}}")
