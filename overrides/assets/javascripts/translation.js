@@ -43,6 +43,15 @@ function updateVerseLinks(version) {
 function injectSelector() {
   if (document.getElementById('translation-select')) return;
 
+  const style = document.createElement('style');
+  style.textContent = `
+    #translation-select option {
+      background-color: var(--md-default-bg-color);
+      color: var(--md-default-fg-color--light);
+    }
+  `;
+  document.head.appendChild(style);
+
   const headerInner = document.querySelector('.md-header__inner');
   if (!headerInner) return;
 
