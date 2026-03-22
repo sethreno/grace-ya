@@ -29,6 +29,13 @@ jobs:
         with:
           enable-cache: true
 
+      - name: Cache verse data
+        uses: actions/cache@v4
+        with:
+          path: .verse_cache
+          key: verse-cache-${{ hashFiles('source/**/*.md') }}
+          restore-keys: verse-cache-
+
       - name: Build site
         run: ./build.sh
 
