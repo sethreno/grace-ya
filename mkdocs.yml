@@ -8,6 +8,7 @@ hooks:
 
 theme:
   name: material
+  custom_dir: overrides
   palette:
     # Light mode
     - scheme: default
@@ -30,6 +31,9 @@ theme:
     - search.suggest
     - search.highlight
     - content.code.copy
+
+extra_javascript:
+  - assets/javascripts/translation.js
 
 markdown_extensions:
   - pymdownx.emoji:

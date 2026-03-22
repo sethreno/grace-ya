@@ -1,6 +1,7 @@
 """MkDocs hooks to automatically generate Bible verse links and QR codes."""
 
 import re
+import html
 import urllib.parse
 import os
 import qrcode
@@ -10,13 +11,16 @@ from bs4 import BeautifulSoup
 
 _cache = diskcache.Cache('.verse_cache')
 
+VERSIONS = ['CJB', 'ESV', 'NIV', 'NKJV', 'NLT']
+
 
 @_cache.memoize()
-def fetch_verse_text(verse_reference):
+def fetch_verse_text(verse_reference, version='NIV'):
     """Fetch verse text from BibleGateway.
 
     Args:
         verse_reference: Bible verse reference (e.g., "John 3:16")
+        version: Bible version abbreviation (e.g., "NIV", "ESV")
 
     Returns:
         The verse text as a string, or None if fetching fails
@@ -24,7 +28,7 @@ def fetch_verse_text(verse_reference):
     try:
         # URL encode the verse reference for BibleGateway
         search_query = urllib.parse.quote(verse_reference.lower())
-        url = f"https://www.biblegateway.com/passage/?search={search_query}&version=NIV"
+        url = f"https://www.biblegateway.com/passage/?search={search_query}&version={version}"
 
         # Fetch the page
         headers = {
@@ -123,12 +127,22 @@ def on_page_markdown(markdown, **kwargs):
             search_query = urllib.parse.quote(verse_ref.lower())
             url = f"https://www.biblegateway.com/passage/?search={search_query}&version=NIV"
 
-            # Fetch the verse text
-            verse_text = fetch_verse_text(verse_ref)
+            # Fetch verse text for all translations
+            translations = {}
+            for version in VERSIONS:
+                text = fetch_verse_text(verse_ref, version)
+                if text:
+                    translations[version] = text
 
             # Build the markdown line with verse text if available
-            if verse_text:
-                processed_lines.append(f"{indent}- [{verse_ref}]({url}){{:target=\"_blank\"}} - *{verse_text}*")
+            if translations:
+                data_attrs = ' '.join(
+                    f'data-{v.lower()}="{html.escape(t, quote=True)}"'
+                    for v, t in translations.items()
+                )
+                default_text = translations.get('NIV', next(iter(translations.values())))
+                verse_span = f'<span class="verse-text" {data_attrs}>{html.escape(default_text)}</span>'
+                processed_lines.append(f"{indent}- [{verse_ref}]({url}){{:target=\"_blank\"}} - {verse_span}")
             else:
                 processed_lines.append(f"{indent}- [{verse_ref}]({url}){{:target=\"_blank\"}}")
         else:
