@@ -32,6 +32,14 @@ function updateVerseTexts(version) {
   });
 }
 
+function updateVerseLinks(version) {
+  document.querySelectorAll('a[href*="biblegateway.com/passage"]').forEach(link => {
+    const url = new URL(link.href);
+    url.searchParams.set('version', version);
+    link.href = url.toString();
+  });
+}
+
 function injectSelector() {
   if (document.getElementById('translation-select')) return;
 
@@ -68,6 +76,7 @@ function injectSelector() {
     const version = e.target.value;
     localStorage.setItem('bible-translation', version);
     updateVerseTexts(version);
+    updateVerseLinks(version);
   });
 
   const wrapper = document.createElement('div');
@@ -85,7 +94,9 @@ function injectSelector() {
 
 function init() {
   injectSelector();
-  updateVerseTexts(getCurrentTranslation());
+  const version = getCurrentTranslation();
+  updateVerseTexts(version);
+  updateVerseLinks(version);
 }
 
 if (typeof document$ !== 'undefined') {
