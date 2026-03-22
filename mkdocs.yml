@@ -1,5 +1,12 @@
 site_name: Grace Young Adults
 site_url: https://example.com
+copyright: >-
+  Scripture quotations via <a href="https://www.biblegateway.com" target="_blank">BibleGateway</a>.
+  NIV&reg; &copy; <a href="https://www.biblica.com" target="_blank">Biblica, Inc.</a> &mdash;
+  ESV&reg; &copy; <a href="https://www.crossway.org" target="_blank">Crossway</a> &mdash;
+  NLT &copy; <a href="https://www.tyndale.com" target="_blank">Tyndale House</a> &mdash;
+  NKJV&reg; &copy; <a href="https://www.thomasnelson.com" target="_blank">Thomas Nelson</a> &mdash;
+  CJB&reg; &copy; <a href="https://messianicjewish.net" target="_blank">David H. Stern</a>
 docs_dir: source
 site_dir: docs
 
