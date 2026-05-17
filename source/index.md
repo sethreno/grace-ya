@@ -4,7 +4,8 @@ Welcome! We’re a young adults group studying the Bible together.
 
 ## Topics
 
-- [Kingdom Ideas](kingdom-ideas/index.md) — current
+- [Parables of Jesus](parables/index.md) — current
+- [Kingdom Ideas](kingdom-ideas/index.md)
 - [The Olive Tree](the-olive-tree/index.md)
 - [Anger](anger/index.md)
 - [Anxiety](relieving-anxiety/index.md)
