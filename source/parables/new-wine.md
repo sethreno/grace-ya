@@ -15,3 +15,5 @@
 ## Related verses
 - Ephesians 4:22-24
 - Galatians 2:19-21
+- Proverbs 14:12
+- Ephesians 2:8-9
