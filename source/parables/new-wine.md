@@ -7,11 +7,11 @@
 
 ## Discussion Questions
 - Thoughts?
-- What do the garment and old wineskin represent?
+- What do the garment and old wineskins represent?
 - What does Jesus mean by "new wine must be poured into new wineskins"?
 - Why would people prefer the old wine?
 - What does Jesus mean by "in those days they will fast"?
 
-## Related versus
+## Related verses
 - Ephesians 4:22-24
 - Galatians 2:19-21
