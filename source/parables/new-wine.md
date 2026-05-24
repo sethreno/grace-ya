@@ -6,9 +6,10 @@
 - Mark 2:18-22
 
 ## Discussion Questions
-- What does the old garment and old wineskin represent?
+- Thoughts?
+- What do the garment and old wineskin represent?
 - What does Jesus mean by "new wine must be poured into new wineskins"?
-- What does Jesus mean by "no one after drinking old wine wants the new"?
+- Why would people prefer the old wine?
 - What does Jesus mean by "in those days they will fast"?
 
 ## Related versus
