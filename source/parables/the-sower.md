@@ -10,6 +10,7 @@
 - Thoughts?
 - Who was the crowd on the shore made up of?
 - Who was Jesus referring to when he said "to those who are outside"?
+- Is Jesus trying to make it difficult to understand what he's saying? Why?
 
 ## Related verses
 - John 15:3-4
