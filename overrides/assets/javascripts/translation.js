@@ -6,22 +6,31 @@ const TRANSLATIONS = [
   { id: 'NLT', name: 'New Living Translation' },
 ];
 
+const WOC_START = '';
+const WOC_END = '';
+
 function getCurrentTranslation() {
   return localStorage.getItem('bible-translation') || 'NIV';
 }
 
+function getRedLetters() {
+  return localStorage.getItem('red-letters') !== 'false';
+}
+
+function applyRedLetters(enabled) {
+  document.body.classList.toggle('hide-red-letters', !enabled);
+}
+
+function textToHtml(text) {
+  const tmp = document.createElement('span');
+  tmp.textContent = text;
+  return tmp.innerHTML
+    .replace(//g, '<span class="jesus-words">')
+    .replace(//g, '</span>');
+}
+
 function setVerseText(el, text) {
-  const paragraphs = text.split('\n\n');
-  if (paragraphs.length <= 1) {
-    el.textContent = text;
-    return;
-  }
-  // Safely escape each paragraph then join with <br><br>
-  const parts = paragraphs.map(p => {
-    const tmp = document.createElement('span');
-    tmp.textContent = p;
-    return tmp.innerHTML;
-  });
+  const parts = text.split('\n\n').map(textToHtml);
   el.innerHTML = parts.join('<br><br>');
 }
 
@@ -49,6 +58,31 @@ function injectSelector() {
       background-color: var(--md-default-bg-color);
       color: var(--md-default-fg-color--light);
     }
+    .jesus-words {
+      color: #c0392b;
+    }
+    [data-md-color-scheme="slate"] .jesus-words {
+      color: #e57373;
+    }
+    .hide-red-letters .jesus-words {
+      color: inherit;
+    }
+    #red-letters-toggle {
+      background: transparent;
+      border: none;
+      color: #c0392b;
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: bold;
+      font-family: Georgia, serif;
+      padding: 0 .25rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+    }
+    #red-letters-toggle.off {
+      color: var(--md-primary-bg-color);
+      opacity: 0.45;
+    }
   `;
   document.head.appendChild(style);
 
@@ -56,6 +90,7 @@ function injectSelector() {
   if (!headerInner) return;
 
   const current = getCurrentTranslation();
+  const redLetters = getRedLetters();
 
   const select = document.createElement('select');
   select.id = 'translation-select';
@@ -88,10 +123,24 @@ function injectSelector() {
     updateVerseLinks(version);
   });
 
+  const toggle = document.createElement('button');
+  toggle.id = 'red-letters-toggle';
+  toggle.title = 'Toggle red letters (words of Jesus)';
+  toggle.textContent = 'A';
+  if (!redLetters) toggle.classList.add('off');
+
+  toggle.addEventListener('click', () => {
+    const enabled = !getRedLetters();
+    localStorage.setItem('red-letters', enabled);
+    applyRedLetters(enabled);
+    toggle.classList.toggle('off', !enabled);
+  });
+
   const wrapper = document.createElement('div');
   wrapper.className = 'md-header__option';
-  wrapper.style.cssText = 'display:flex;align-items:center;';
+  wrapper.style.cssText = 'display:flex;align-items:center;gap:.25rem;';
   wrapper.appendChild(select);
+  wrapper.appendChild(toggle);
 
   const paletteOption = headerInner.querySelector('.md-header__option');
   if (paletteOption) {
@@ -103,6 +152,7 @@ function injectSelector() {
 
 function init() {
   injectSelector();
+  applyRedLetters(getRedLetters());
   const version = getCurrentTranslation();
   updateVerseTexts(version);
   updateVerseLinks(version);
