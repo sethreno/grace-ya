@@ -18,7 +18,10 @@
 ## Related verses
 - Isaiah 6:9-10
 - Mathew 13:37
-- John 15:3-4
+- John 15:3-8
 - Luke 8:16-18 
 - Mark 4:21-23
 - Mathew  5:15-16
+- Hosea 10:12
+- Proverbs 4:23
+- Mathew 6:20-21
