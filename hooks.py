@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 _cache = diskcache.Cache('.verse_cache')
 
-VERSIONS = ['CJB', 'ESV', 'NIV', 'NKJV', 'NLT']
+VERSIONS = ['CJB', 'ESV', 'LSB', 'NIV', 'NKJV', 'NLT']
 
 # Private-use Unicode sentinels for words of Christ (U+E000/E001 never appear in Bible text)
 _WOC_START = ''

@@ -1,6 +1,7 @@
 const TRANSLATIONS = [
   { id: 'CJB', name: 'Complete Jewish Bible' },
   { id: 'ESV', name: 'English Standard Version' },
+  { id: 'LSB', name: 'Legacy Standard Bible' },
   { id: 'NIV', name: 'New International Version' },
   { id: 'NKJV', name: 'New King James Version' },
   { id: 'NLT', name: 'New Living Translation' },
