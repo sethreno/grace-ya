@@ -29,5 +29,8 @@
 Historical account of the events prophesied by Jesus in the Olivet Discourse
 
 - [Book V](https://www.gutenberg.org/cache/epub/2850/pg2850-images.html#link52H_4_0001) describes the siege of Jerusalem 
+
+    Note: Josephus references Jesus son of Ananias not Jesus of Nazareth
+
 - [Book VI](https://www.gutenberg.org/cache/epub/2850/pg2850-images.html#link62H_4_0001) describes the destruction of the temple
 
