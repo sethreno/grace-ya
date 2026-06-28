@@ -10,3 +10,4 @@
 - [The Talents](talents.md)
 - [The Sheep & The Goats](sheep-goats.md)
 - [The Budding Fig Tree](fig-tree.md)
+- [The Rich Man & Lazarus](rich-man-and-lazarus.md)
