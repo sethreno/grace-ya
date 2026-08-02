@@ -15,3 +15,4 @@
 - Mathew 19:23
 - Mathew 6:22-24
 - Luke 12:15
+- Mathew 25:35-40
